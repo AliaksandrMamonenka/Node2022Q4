@@ -3,18 +3,18 @@ const path = require("path");
 const csv = require("csvtojson");
 
 const writableStream = fs.createWriteStream(
-  path.resolve(__dirname, "result.txt")
+  path.resolve(__dirname, "result.txt"),
+  { encoding: "utf8" }
 );
 
-csv({
-    ignoreColumns: /Amount/
-  })
-  .fromFile("./Task1.2/csv/nodejs-hw1-ex1.csv")
-  .then((jsonObj) => {
-    writableStream.write(JSON.stringify(jsonObj));
-    writableStream.end();
-  })
-  .catch((error) => {
-    console.log(error);
-    return;
-  });
+const csvStream = csv({
+  ignoreColumns: /Amount/,
+}).fromFile("./Task1.2/csv/nodejs-hw1-ex1.csv");
+
+csvStream.on("data", (chunk) => {
+  writableStream.write(chunk.toString("utf8"));
+});
+
+csvStream.on("error", (err) => {
+  console.log(err);
+});
