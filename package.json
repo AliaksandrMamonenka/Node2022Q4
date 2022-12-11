@@ -4,7 +4,8 @@
   "description": "NodeJs Mentoring Program",
   "main": "index.js",
   "scripts": {
-    "task1:1": "nodemon ./Task1.1/index.js"
+    "task1": "nodemon ./Task1.1/index.js",
+    "task2": "nodemon ./Task1.2/index.js"
   },
   "repository": {
     "type": "git",
@@ -22,5 +23,8 @@
   "homepage": "https://github.com/AliaksandrMamonenka/Node2022Q4#readme",
   "devDependencies": {
     "nodemon": "^2.0.20"
+  },
+  "dependencies": {
+    "csvtojson": "^2.0.10"
   }
 }
