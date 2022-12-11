@@ -1,0 +1,26 @@
+{
+  "name": "node2022q4",
+  "version": "1.0.0",
+  "description": "NodeJs Mentoring Program",
+  "main": "index.js",
+  "scripts": {
+    "task1:1": "nodemon ./Task1.1/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AliaksandrMamonenka/Node2022Q4.git"
+  },
+  "keywords": [
+    "nodejs",
+    "mentoring"
+  ],
+  "author": "Aliaksandr Mamonenka",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/AliaksandrMamonenka/Node2022Q4/issues"
+  },
+  "homepage": "https://github.com/AliaksandrMamonenka/Node2022Q4#readme",
+  "devDependencies": {
+    "nodemon": "^2.0.20"
+  }
+}
