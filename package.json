@@ -5,7 +5,9 @@
   "main": "index.js",
   "scripts": {
     "task1": "nodemon ./Task1.1/index.js",
-    "task2": "nodemon ./Task1.2/index.js"
+    "task2": "nodemon ./Task1.2/index.js",
+    "task3:1": "nodemon --exec babel-node ./Task1.3/index1.js",
+    "task3:2": "nodemon --exec babel-node ./Task1.3/index2.js"
   },
   "repository": {
     "type": "git",
@@ -22,6 +24,9 @@
   },
   "homepage": "https://github.com/AliaksandrMamonenka/Node2022Q4#readme",
   "devDependencies": {
+    "@babel/core": "^7.20.5",
+    "@babel/node": "^7.20.5",
+    "@babel/preset-env": "^7.20.2",
     "nodemon": "^2.0.20"
   },
   "dependencies": {
