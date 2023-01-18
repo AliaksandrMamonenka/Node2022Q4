@@ -1,44 +1,16 @@
-import { v4 as uuidv4 } from 'uuid';
+import { DataTypes } from 'sequelize';
+import { sequelize } from '../data-access/index.js';
+import User from '../db_migration/models/user.js';
+const user = User(sequelize, DataTypes);
 class UsersService {
-    constructor() {
-        this.usersList = [];
-    }
-    _getAutoSuggestUsers(loginSubstring, limit) {
-        return this.usersList.filter((item) => item.login.includes(loginSubstring)).slice(0, limit);
-    }
     getAllUsers(query) {
-        const { loginSubstring, limit } = query;
-        if (loginSubstring && limit) {
-            return this._getAutoSuggestUsers(loginSubstring, limit);
-        }
-        return this.usersList;
+        return user.findAll();
     }
     getUser(id) {
-        return this.usersList.find((user) => user.id === id);
+        return user.findByPk(id);
     }
-    createUser(user) {
-        const newUser = {
-            ...user,
-            id: uuidv4(),
-            isDeleted: false,
-        };
-        return (this.usersList = [...this.usersList, newUser]);
-    }
-    updateUser(currentUser) {
-        return (this.usersList = this.usersList.map((user) => {
-            if (user.id === currentUser.id) {
-                return { ...user, ...currentUser };
-            }
-            return user;
-        }));
-    }
-    deleteUser(id) {
-        return (this.usersList = this.usersList.map((user) => {
-            if (user.id === id) {
-                return { ...user, isDeleted: true };
-            }
-            return user;
-        }));
+    createUser(data) {
+        return user.create(data);
     }
 }
 export default new UsersService();

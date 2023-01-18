@@ -18,9 +18,7 @@ export const updateUser = (req, res) => {
     if (error) {
         return res.status(400).json(error.details);
     }
-    res.status(200).json(UserService.updateUser(req.body));
 };
 export const deleteUser = (req, res) => {
-    res.status(200).json(UserService.deleteUser(req.params.id));
 };
 //# sourceMappingURL=userController.js.map

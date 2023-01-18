@@ -1,0 +1,23 @@
+{
+  "development": {
+    "username": "Aliaksandr_Mamonenka",
+    "password": null,
+    "database": "node2022q4",
+    "host": "127.0.0.1",
+    "dialect": "postgres"
+  },
+  "test": {
+    "username": "Aliaksandr_Mamonenka",
+    "password": null,
+    "database": "node2022q4",
+    "host": "127.0.0.1",
+    "dialect": "postgres"
+  },
+  "production": {
+    "username": "Aliaksandr_Mamonenka",
+    "password": null,
+    "database": "node2022q4",
+    "host": "127.0.0.1",
+    "dialect": "postgres"
+  }
+}
