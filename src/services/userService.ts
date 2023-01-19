@@ -1,7 +1,7 @@
 import { DataTypes, Op } from 'sequelize';
 
 import { sequelize } from '../data-access/index.js';
-import User from '../db_migration/models/user.js';
+import User from '../models/user.js';
 import { UserType } from '../types/userType.js';
 
 const user = User(sequelize, DataTypes);

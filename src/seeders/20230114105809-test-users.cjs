@@ -7,7 +7,6 @@ module.exports = {
       'user',
       [
         {
-          id: 1,
           login: 'Homer',
           password: 'HomerSimpson',
           age: 40,
@@ -16,7 +15,6 @@ module.exports = {
           updatedAt: new Date(),
         },
         {
-          id: 2,
           login: 'Bart',
           password: 'BartSimpson',
           age: 15,
@@ -25,7 +23,6 @@ module.exports = {
           updatedAt: new Date(),
         },
         {
-          id: 3,
           login: 'Lisa',
           password: 'LisaSimpson',
           age: 16,
@@ -38,7 +35,7 @@ module.exports = {
     );
   },
 
-  // async down(queryInterface, Sequelize) {
-  //   await queryInterface.bulkDelete('user', null, {});
-  // },
+  async down(queryInterface, Sequelize) {
+    await queryInterface.bulkDelete('user', null, {});
+  },
 };

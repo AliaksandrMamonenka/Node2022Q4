@@ -32,5 +32,8 @@ module.exports = {
             },
         ], {});
     },
+    async down(queryInterface, Sequelize) {
+        await queryInterface.bulkDelete('user', null, {});
+    },
 };
 //# sourceMappingURL=20230114105809-test-users.cjs.map

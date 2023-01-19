@@ -2,7 +2,7 @@
 import { Model } from 'sequelize';
 export default (sequelize, DataTypes) => {
     class User extends Model {
-        static associate(models) {
+        static associate() {
         }
     }
     User.init({
@@ -26,7 +26,8 @@ export default (sequelize, DataTypes) => {
         },
     }, {
         sequelize,
-        modelName: 'User',
+        modelName: 'user',
+        freezeTableName: true,
     });
     return User;
 };

@@ -1,13 +1,13 @@
-'use strict';
+"use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 module.exports = {
     async up(queryInterface, Sequelize) {
         await queryInterface.createTable('user', {
             id: {
                 allowNull: false,
-                autoIncrement: true,
                 primaryKey: true,
                 type: Sequelize.INTEGER,
+                autoIncrement: true,
             },
             login: {
                 type: Sequelize.STRING,
