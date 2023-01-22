@@ -1,12 +1,13 @@
 import { Router } from 'express';
-import { getUser, createUser, updateUser, deleteUser, getAllUsers } from '../controllers/userController.js';
+import UserController from '../controllers/userController.js';
 
 const userRouter = Router();
 
-userRouter.get('/api/users', getAllUsers);
-userRouter.get('/api/users/:id', getUser);
-userRouter.post('/api/users', createUser);
-userRouter.put('/api/users', updateUser);
-userRouter.delete('/api/users/:id', deleteUser);
+// /api/users?login=Hom&limit=10
+userRouter.get('/api/users', UserController.getAllUsers);
+userRouter.get('/api/users/:id', UserController.getUser);
+userRouter.post('/api/users', UserController.createUser);
+userRouter.put('/api/users', UserController.updateUser);
+userRouter.delete('/api/users/:id', UserController.deleteUser);
 
 export default userRouter;

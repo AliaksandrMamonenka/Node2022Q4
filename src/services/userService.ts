@@ -1,56 +1,46 @@
-import { v4 as uuidv4 } from 'uuid';
+import { DataTypes, Op } from 'sequelize';
+
+import { sequelize } from '../data-access/index.js';
+import User from '../models/user.js';
 import { UserType } from '../types/userType.js';
 
+const user = User(sequelize, DataTypes);
 class UsersService {
-  usersList: UserType[];
+  async getAllUsers(query: any) {
+    const { login, limit }: any = query;
+    let queryString: any = {
+      where: {
+        isDeleted: false,
+      },
+    };
 
-  constructor() {
-    this.usersList = [];
-  }
-
-  _getAutoSuggestUsers(loginSubstring: string, limit: number) {
-    return this.usersList.filter((item) => item.login.includes(loginSubstring)).slice(0, limit);
-  }
-
-  getAllUsers(query: any) {
-    const { loginSubstring, limit } = query;
-
-    if (loginSubstring && limit) {
-      return this._getAutoSuggestUsers(loginSubstring, limit);
+    if (limit) {
+      queryString = { ...queryString, limit };
     }
 
-    return this.usersList;
+    if (login) {
+      queryString.where = { ...queryString.where, login: { [Op.like]: `%${login}%` } };
+    }
+
+    return await user.findAll(queryString);
   }
 
-  getUser(id: string) {
-    return this.usersList.find((user) => user.id === id);
+  async getUser(id: string) {
+    return await user.findByPk(id);
   }
 
-  createUser(user: UserType) {
-    const newUser = {
-      ...user,
-      id: uuidv4(),
-      isDeleted: false,
-    };
-    return (this.usersList = [...this.usersList, newUser]);
+  async createUser(item: UserType) {
+    return await user.create(item, { returning: true });
   }
 
-  updateUser(currentUser: UserType) {
-    return (this.usersList = this.usersList.map((user) => {
-      if (user.id === currentUser.id) {
-        return { ...user, ...currentUser };
-      }
-      return user;
-    }));
+  async updateUser(currentUser: UserType) {
+    const { login, password, age, id, isDeleted } = currentUser;
+
+    return await user.update({ login, password, age, isDeleted }, { where: { id }, returning: true });
   }
 
-  deleteUser(id: string) {
-    return (this.usersList = this.usersList.map((user) => {
-      if (user.id === id) {
-        return { ...user, isDeleted: true };
-      }
-      return user;
-    }));
+  async deleteUser(id: string) {
+    return await user.update({ isDeleted: true }, { where: { id } });
   }
 }
 
