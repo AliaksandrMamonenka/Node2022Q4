@@ -4,29 +4,23 @@
 module.exports = {
   async up(queryInterface, Sequelize) {
     await queryInterface.bulkInsert(
-      'user',
+      'group',
       [
         {
-          login: 'Homer',
-          password: 'HomerSimpson',
-          age: 36,
-          isDeleted: false,
+          name: 'user',
+          permissions: ['READ', 'SHARE'],
           createdAt: new Date(),
           updatedAt: new Date(),
         },
         {
-          login: 'Bart',
-          password: 'BartSimpson',
-          age: 10,
-          isDeleted: false,
+          name: 'superUser',
+          permissions: ['WRITE', 'UPLOAD_FILES'],
           createdAt: new Date(),
           updatedAt: new Date(),
         },
         {
-          login: 'Lisa',
-          password: 'LisaSimpson',
-          age: 8,
-          isDeleted: false,
+          name: 'admin',
+          permissions: ['DELETE'],
           createdAt: new Date(),
           updatedAt: new Date(),
         },
@@ -36,6 +30,6 @@ module.exports = {
   },
 
   async down(queryInterface, Sequelize) {
-    await queryInterface.bulkDelete('user', null, {});
+    await queryInterface.bulkDelete('group', null, {});
   },
 };

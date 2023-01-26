@@ -1,7 +1,6 @@
-import { DataTypes, Op } from 'sequelize';
-import { sequelize } from '../data-access/index.js';
-import User from '../models/user.js';
-const user = User(sequelize, DataTypes);
+import { Op } from 'sequelize';
+import db from '../models/index.js';
+const DB = db;
 class UsersService {
     async getAllUsers(query) {
         const { login, limit } = query;
@@ -16,20 +15,20 @@ class UsersService {
         if (login) {
             queryString.where = { ...queryString.where, login: { [Op.like]: `%${login}%` } };
         }
-        return await user.findAll(queryString);
+        return await DB.user.findAll(queryString);
     }
     async getUser(id) {
-        return await user.findByPk(id);
+        return await DB.user.findByPk(id);
     }
     async createUser(item) {
-        return await user.create(item, { returning: true });
+        return await DB.user.create(item, { returning: true });
     }
     async updateUser(currentUser) {
         const { login, password, age, id, isDeleted } = currentUser;
-        return await user.update({ login, password, age, isDeleted }, { where: { id }, returning: true });
+        return await DB.user.update({ login, password, age, isDeleted }, { where: { id }, returning: true });
     }
     async deleteUser(id) {
-        return await user.update({ isDeleted: true }, { where: { id } });
+        return await DB.user.update({ isDeleted: true }, { where: { id } });
     }
 }
 export default new UsersService();

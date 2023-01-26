@@ -16,8 +16,8 @@
     "lint:fix": "npx eslint ./src --fix",     
     "db:add-tables": "npx sequelize-cli db:migrate",
     "db:fill-tables": "npx sequelize-cli db:seed:all",
-    "db:drop-tables": "npx sequelize-cli db:migrate:undo",
-    "db:drop-data": "npx sequelize-cli db:seed:undo"
+    "db:drop-tables": "npx sequelize-cli db:migrate:undo:all",
+    "db:drop-data": "npx sequelize-cli db:seed:undo:all"
   },
   "repository": {
     "type": "git",
