@@ -56,9 +56,9 @@ class UserController {
         }
     }
     async assignToGroup(req, res) {
-        const { groupId, userIds } = req.body;
+        const { groupId, userId } = req.body;
         try {
-            const user = await userGroupService.addUsersToGroup(groupId, userIds);
+            const user = await userGroupService.addUsersToGroup(groupId, userId);
             return res.status(200).json(user);
         }
         catch (error) {

@@ -7,8 +7,7 @@ const validationObj = {
 };
 
 const updateValidationObj = {
-  id: Joi.string().required(),
-  isDeleted: Joi.boolean().required(),
+  id: Joi.number().required(),
 };
 
 const userValidation = (data: any) => {

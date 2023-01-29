@@ -6,7 +6,7 @@ const validationObj = {
 };
 
 const updateValidationObj = {
-  id: Joi.string().required(),
+  id: Joi.number().required(),
 };
 
 const groupValidation = (data: any) => {

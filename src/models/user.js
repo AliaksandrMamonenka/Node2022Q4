@@ -9,9 +9,14 @@ export default (sequelize, DataTypes) => {
      */
     static associate({ group }) {
       // define association here
-      this.belongsToMany(group, { through: 'userGroup' });
+      this.belongsToMany(group, {
+        through: 'userGroup',
+        as: 'groups',
+        foreignKey: 'groupId',
+      });
     }
   }
+
   User.init(
     {
       login: {
@@ -26,11 +31,6 @@ export default (sequelize, DataTypes) => {
       age: {
         type: DataTypes.INTEGER,
         allowNull: false,
-      },
-      isDeleted: {
-        type: DataTypes.BOOLEAN,
-        allowNull: false,
-        defaultValue: false,
       },
     },
     {

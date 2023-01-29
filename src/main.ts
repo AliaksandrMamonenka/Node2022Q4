@@ -6,7 +6,6 @@ import userRouter from './routes/userRoute.js';
 import groupRouter from './routes/groupRoute.js';
 
 const { sequelize } = db;
-// console.log(db);
 dotenv.config();
 
 const app = express();

@@ -4,11 +4,7 @@ const DB = db;
 class UsersService {
     async getAllUsers(query) {
         const { login, limit } = query;
-        let queryString = {
-            where: {
-                isDeleted: false,
-            },
-        };
+        let queryString = {};
         if (limit) {
             queryString = { ...queryString, limit };
         }
@@ -24,11 +20,11 @@ class UsersService {
         return await DB.user.create(item, { returning: true });
     }
     async updateUser(currentUser) {
-        const { login, password, age, id, isDeleted } = currentUser;
-        return await DB.user.update({ login, password, age, isDeleted }, { where: { id }, returning: true });
+        const { login, password, age, id } = currentUser;
+        return await DB.user.update({ login, password, age }, { where: { id }, returning: true });
     }
     async deleteUser(id) {
-        return await DB.user.update({ isDeleted: true }, { where: { id } });
+        return await DB.user.destroy({ where: { id }, returning: true });
     }
 }
 export default new UsersService();

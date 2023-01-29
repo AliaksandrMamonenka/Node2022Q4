@@ -8,11 +8,7 @@ const DB: any = db;
 class UsersService {
   async getAllUsers(query: any) {
     const { login, limit }: any = query;
-    let queryString: any = {
-      where: {
-        isDeleted: false,
-      },
-    };
+    let queryString: any = {};
 
     if (limit) {
       queryString = { ...queryString, limit };
@@ -34,13 +30,12 @@ class UsersService {
   }
 
   async updateUser(currentUser: UserType) {
-    const { login, password, age, id, isDeleted } = currentUser;
-
-    return await DB.user.update({ login, password, age, isDeleted }, { where: { id }, returning: true });
+    const { login, password, age, id } = currentUser;
+    return await DB.user.update({ login, password, age }, { where: { id }, returning: true });
   }
 
   async deleteUser(id: string) {
-    return await DB.user.destroy({ where: { id } });
+    return await DB.user.destroy({ where: { id }, returning: true });
   }
 }
 

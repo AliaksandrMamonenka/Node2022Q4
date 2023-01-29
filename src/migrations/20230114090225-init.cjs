@@ -21,11 +21,6 @@ module.exports = {
         type: Sequelize.INTEGER,
         allowNull: false,
       },
-      isDeleted: {
-        type: Sequelize.BOOLEAN,
-        allowNull: false,
-        defaultValue: false,
-      },
       createdAt: {
         type: Sequelize.DATE,
         allowNull: false,
@@ -51,35 +46,6 @@ module.exports = {
       permissions: {
         type: Sequelize.ARRAY(Sequelize.STRING),
         allowNull: false,
-      },
-      createdAt: {
-        allowNull: false,
-        type: Sequelize.DATE,
-      },
-      updatedAt: {
-        allowNull: false,
-        type: Sequelize.DATE,
-      },
-    });
-
-    await queryInterface.createTable('userGroup', {
-      userId: {
-        type: Sequelize.INTEGER,
-        allowNull: false,
-        primaryKey: true,
-        references: {
-          model: 'user',
-          key: 'id',
-        },
-      },
-      groupId: {
-        type: Sequelize.INTEGER,
-        allowNull: false,
-        primaryKey: true,
-        references: {
-          model: 'group',
-          key: 'id',
-        },
       },
       createdAt: {
         allowNull: false,

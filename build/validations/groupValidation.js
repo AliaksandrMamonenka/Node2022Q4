@@ -4,7 +4,7 @@ const validationObj = {
     permissions: Joi.array().items(Joi.string()),
 };
 const updateValidationObj = {
-    id: Joi.string().required(),
+    id: Joi.number().required(),
 };
 const groupValidation = (data) => {
     const schema = Joi.object(validationObj);

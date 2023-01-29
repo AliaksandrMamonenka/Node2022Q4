@@ -5,8 +5,7 @@ const validationObj = {
     age: Joi.number().min(4).max(130).required(),
 };
 const updateValidationObj = {
-    id: Joi.string().required(),
-    isDeleted: Joi.boolean().required(),
+    id: Joi.number().required(),
 };
 const userValidation = (data) => {
     const schema = Joi.object(validationObj);

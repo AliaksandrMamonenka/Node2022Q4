@@ -7,11 +7,11 @@ class UserGroupService {
     const transaction = await DB.sequelize.transaction();
 
     try {
-      const group = await DB.group.findByPk(groupId);
-      const user = await DB.user.findByPk(userId);
+      const { id: group } = await DB.group.findByPk(groupId, { raw: true });
+      const { id: user } = await DB.user.findByPk(userId, { raw: true });
 
       if (group && user) {
-        const result = await DB.userGroup.create({ groupId, userId }, { transaction });
+        const result = await DB.userGroup.create({ groupId: group, userId: user }, { transaction });
         await transaction.commit();
         return result;
       } else {
