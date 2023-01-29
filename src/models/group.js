@@ -11,8 +11,6 @@ export default (sequelize, DataTypes) => {
       // define association here
       this.belongsToMany(user, {
         through: 'userGroup',
-        as: 'users',
-        foreignKey: 'userId',
       });
     }
   }
