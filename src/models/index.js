@@ -20,10 +20,8 @@ const currentEnv = JSON.parse(config)[env];
 let sequelize = new Sequelize(currentEnv.database, currentEnv.username, currentEnv.password, currentEnv);
 const db = {};
 
-db.group = group(sequelize, DataTypes);
 db.user = user(sequelize, DataTypes);
-
-//TODO: Move associate here. May be
+db.group = group(sequelize, DataTypes);
 
 db.userGroup = userGroup(sequelize, DataTypes);
 
