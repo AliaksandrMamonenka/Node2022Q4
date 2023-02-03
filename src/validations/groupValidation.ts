@@ -2,7 +2,7 @@ import Joi from 'joi';
 
 const validationObj = {
   name: Joi.string().required(),
-  permissions: Joi.array().items(Joi.string()),
+  permissions: Joi.array().valid('READ', 'WRITE', 'DELETE', 'SHARE', 'UPLOAD_FILES').items(Joi.string()),
 };
 
 const updateValidationObj = {
