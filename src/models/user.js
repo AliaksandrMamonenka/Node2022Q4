@@ -1,16 +1,20 @@
 'use strict';
 import { Model } from 'sequelize';
-export default (sequelize: any, DataTypes: { STRING: any; INTEGER: any; BOOLEAN: any }) => {
+export default (sequelize, DataTypes) => {
   class User extends Model {
     /**
      * Helper method for defining associations.
      * This method is not a part of Sequelize lifecycle.
      * The `models/index` file will call this method automatically.
      */
-    static associate() {
+    static associate({ group }) {
       // define association here
+      this.belongsToMany(group, {
+        through: 'userGroup',
+      });
     }
   }
+
   User.init(
     {
       login: {
@@ -26,11 +30,6 @@ export default (sequelize: any, DataTypes: { STRING: any; INTEGER: any; BOOLEAN:
         type: DataTypes.INTEGER,
         allowNull: false,
       },
-      isDeleted: {
-        type: DataTypes.BOOLEAN,
-        allowNull: false,
-        defaultValue: false,
-      },
     },
     {
       sequelize,
@@ -38,5 +37,6 @@ export default (sequelize: any, DataTypes: { STRING: any; INTEGER: any; BOOLEAN:
       freezeTableName: true,
     },
   );
+
   return User;
 };

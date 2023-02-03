@@ -2,32 +2,29 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 module.exports = {
     async up(queryInterface, Sequelize) {
-        await queryInterface.bulkInsert('user', [
+        await queryInterface.bulkInsert('group', [
             {
-                login: 'Homer',
-                password: 'HomerSimpson',
-                age: 36,
+                name: 'user',
+                permissions: ['READ', 'SHARE'],
                 createdAt: new Date(),
                 updatedAt: new Date(),
             },
             {
-                login: 'Bart',
-                password: 'BartSimpson',
-                age: 10,
+                name: 'superUser',
+                permissions: ['WRITE', 'UPLOAD_FILES'],
                 createdAt: new Date(),
                 updatedAt: new Date(),
             },
             {
-                login: 'Lisa',
-                password: 'LisaSimpson',
-                age: 8,
+                name: 'admin',
+                permissions: ['DELETE'],
                 createdAt: new Date(),
                 updatedAt: new Date(),
             },
         ], {});
     },
     async down(queryInterface, Sequelize) {
-        await queryInterface.bulkDelete('user', null, {});
+        await queryInterface.bulkDelete('group', null, {});
     },
 };
-//# sourceMappingURL=20230114105809-test-users.cjs.map
+//# sourceMappingURL=20230124153712-test-group.cjs.map

@@ -2,7 +2,12 @@
 import { Model } from 'sequelize';
 export default (sequelize, DataTypes) => {
     class User extends Model {
-        static associate() {
+        static associate({ group }) {
+            this.belongsToMany(group, {
+                through: 'userGroup',
+                as: 'groups',
+                foreignKey: 'groupId',
+            });
         }
     }
     User.init({
@@ -18,11 +23,6 @@ export default (sequelize, DataTypes) => {
         age: {
             type: DataTypes.INTEGER,
             allowNull: false,
-        },
-        isDeleted: {
-            type: DataTypes.BOOLEAN,
-            allowNull: false,
-            defaultValue: false,
         },
     }, {
         sequelize,

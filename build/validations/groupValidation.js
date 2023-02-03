@@ -1,22 +1,21 @@
 import Joi from 'joi';
 const validationObj = {
-    login: Joi.string().required(),
-    password: Joi.string().alphanum().required(),
-    age: Joi.number().min(4).max(130).required(),
+    name: Joi.string().required(),
+    permissions: Joi.array().items(Joi.string()),
 };
 const updateValidationObj = {
     id: Joi.number().required(),
 };
-const userValidation = (data) => {
+const groupValidation = (data) => {
     const schema = Joi.object(validationObj);
     return schema.validate(data, { abortEarly: false });
 };
-const userUpdateValidation = (data) => {
+const groupUpdateValidation = (data) => {
     const schema = Joi.object({
         ...validationObj,
         ...updateValidationObj,
     });
     return schema.validate(data, { abortEarly: false });
 };
-export { userValidation, userUpdateValidation };
-//# sourceMappingURL=userValidation.js.map
+export { groupValidation, groupUpdateValidation };
+//# sourceMappingURL=groupValidation.js.map

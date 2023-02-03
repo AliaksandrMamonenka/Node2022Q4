@@ -1,4 +1,5 @@
 import { Request, Response } from 'express';
+import userGroupService from '../services/userGroupService.js';
 import UserService from '../services/userService.js';
 import { userUpdateValidation, userValidation } from '../validations/userValidation.js';
 
@@ -55,6 +56,17 @@ class UserController {
     try {
       const deleteUser = await UserService.deleteUser(req.params.id);
       return res.status(200).json(deleteUser);
+    } catch (error) {
+      res.status(500).json(error);
+    }
+  }
+
+  async assignToGroup(req: Request, res: Response) {
+    const { userId } = req.body;
+
+    try {
+      const user = await userGroupService.addUsersToGroup(req.params.groupId, userId);
+      return res.status(200).json(user);
     } catch (error) {
       res.status(500).json(error);
     }
