@@ -9,7 +9,7 @@ class UserController {
       const getAllUsers = await UserService.getAllUsers(req.query);
       return res.status(200).json(getAllUsers);
     } catch (error) {
-      res.status(500).json(error);
+      throw error;
     }
   }
 
@@ -18,7 +18,7 @@ class UserController {
       const getUser = await UserService.getUser(req.params.id);
       return res.status(200).json(getUser);
     } catch (error) {
-      res.status(500).json(error);
+      throw error;
     }
   }
 
@@ -33,7 +33,7 @@ class UserController {
       const createUser = await UserService.createUser(req.body);
       return res.status(200).json(createUser);
     } catch (error) {
-      res.status(500).json(error);
+      throw error;
     }
   }
 
@@ -48,7 +48,7 @@ class UserController {
       const updateUser = await UserService.updateUser(req.body);
       return res.status(200).json(updateUser);
     } catch (error) {
-      res.status(500).json(error);
+      throw error;
     }
   }
 
@@ -57,7 +57,7 @@ class UserController {
       const deleteUser = await UserService.deleteUser(req.params.id);
       return res.status(200).json(deleteUser);
     } catch (error) {
-      res.status(500).json(error);
+      throw error;
     }
   }
 
@@ -67,7 +67,7 @@ class UserController {
       const user = await userGroupService.addUsersToGroup(groupId, userId);
       return res.status(200).json(user);
     } catch (error) {
-      res.status(500).json(error);
+      throw error;
     }
   }
 }

@@ -8,7 +8,7 @@ class UserController {
             return res.status(200).json(getAllUsers);
         }
         catch (error) {
-            res.status(500).json(error);
+            throw error;
         }
     }
     async getUser(req, res) {
@@ -17,7 +17,7 @@ class UserController {
             return res.status(200).json(getUser);
         }
         catch (error) {
-            res.status(500).json(error);
+            throw error;
         }
     }
     async createUser(req, res) {
@@ -30,7 +30,7 @@ class UserController {
             return res.status(200).json(createUser);
         }
         catch (error) {
-            res.status(500).json(error);
+            throw error;
         }
     }
     async updateUser(req, res) {
@@ -43,7 +43,7 @@ class UserController {
             return res.status(200).json(updateUser);
         }
         catch (error) {
-            res.status(500).json(error);
+            throw error;
         }
     }
     async deleteUser(req, res) {
@@ -52,7 +52,7 @@ class UserController {
             return res.status(200).json(deleteUser);
         }
         catch (error) {
-            res.status(500).json(error);
+            throw error;
         }
     }
     async assignToGroup(req, res) {
@@ -62,7 +62,7 @@ class UserController {
             return res.status(200).json(user);
         }
         catch (error) {
-            res.status(500).json(error);
+            throw error;
         }
     }
 }

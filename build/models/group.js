@@ -5,8 +5,6 @@ export default (sequelize, DataTypes) => {
         static associate({ user }) {
             this.belongsToMany(user, {
                 through: 'userGroup',
-                as: 'users',
-                foreignKey: 'userId',
             });
         }
     }

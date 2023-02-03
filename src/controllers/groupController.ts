@@ -8,7 +8,7 @@ class GroupController {
       const getAllGroups = await GroupService.getAllGroups();
       return res.status(200).json(getAllGroups);
     } catch (error) {
-      res.status(500).json(error);
+      throw error;
     }
   }
 
@@ -17,7 +17,7 @@ class GroupController {
       const getGroup = await GroupService.getGroup(req.params.id);
       return res.status(200).json(getGroup);
     } catch (error) {
-      res.status(500).json(error);
+      throw error;
     }
   }
 
@@ -32,7 +32,7 @@ class GroupController {
       const createGroup = await GroupService.createGroup(req.body);
       return res.status(200).json(createGroup);
     } catch (error) {
-      res.status(500).json(error);
+      throw error;
     }
   }
 
@@ -47,7 +47,7 @@ class GroupController {
       const updateGroup = await GroupService.updateGroup(req.body);
       return res.status(200).json(updateGroup);
     } catch (error) {
-      res.status(500).json(error);
+      throw error;
     }
   }
 
@@ -56,7 +56,7 @@ class GroupController {
       const deleteGroup = await GroupService.deleteGroup(req.params.id);
       return res.status(200).json(deleteGroup);
     } catch (error) {
-      res.status(500).json(error);
+      throw error;
     }
   }
 }
