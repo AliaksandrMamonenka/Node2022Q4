@@ -13,9 +13,7 @@ loggers.add('infoLogger', {
         printf((info) => {
           const { timestamp, level, message, ...args } = info;
           const { meta } = args;
-          return `${timestamp} ${level}: ${message} Status Code: ${meta?.res?.statusCode || ''} Duration: ${
-            meta?.responseTime || ''
-          }`;
+          return `${timestamp} ${level}: ${message} ${meta?.res?.statusCode || ''} ${meta?.responseTime || ''}`;
         }),
       ),
     }),
