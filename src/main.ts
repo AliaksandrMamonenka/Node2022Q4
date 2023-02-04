@@ -51,7 +51,6 @@ sequelize
     logger.info('Connected to DB ...');
     app.listen(port, () => {
       logger.info(`Example app listening on port ${port} ...`);
-      logger.info(`Example app listening on port ${port} ...`);
     });
   })
   .catch((error: any) => logger.error(`Failed to connect to DB: ${error}`));
