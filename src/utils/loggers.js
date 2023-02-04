@@ -27,7 +27,7 @@ loggers.add('errorLogger', {
     new transports.Console({
       level: 'error',
       format: combine(
-        colorize({ all: true, colors: { info: 'blue' } }),
+        colorize({ all: true }),
         timestamp({ format: 'YYYY-MM-DD HH:mm:ss' }),
         printf((info) => {
           const { timestamp, level, message, ...args } = info;

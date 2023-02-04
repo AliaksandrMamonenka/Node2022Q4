@@ -18,9 +18,8 @@ class UserGroupService {
         throw new Error('put valid group or user ids');
       }
     } catch (error) {
-      console.log(error);
       await transaction.rollback();
-      return error;
+      throw error;
     }
   }
 }
