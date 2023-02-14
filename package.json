@@ -13,7 +13,7 @@
     "build": "rimraf ./build && npx tsc",
     "start": " npm run build && node build/main",
     "lint": "npx eslint ./src",
-    "lint:fix": "npx eslint ./src --fix",     
+    "lint:fix": "npx eslint ./src --fix",
     "db:add-tables": "npx sequelize-cli db:migrate",
     "db:fill-tables": "npx sequelize-cli db:seed:all",
     "db:drop-tables": "npx sequelize-cli db:migrate:undo:all",
@@ -57,9 +57,11 @@
     "csvtojson": "^2.0.10",
     "dotenv": "^16.0.3",
     "express": "^4.18.2",
+    "express-winston": "^4.2.0",
     "joi": "^17.7.0",
     "pg": "^8.8.0",
     "sequelize": "^6.28.0",
-    "uuid": "^9.0.0"
+    "uuid": "^9.0.0",
+    "winston": "^3.8.2"
   }
 }

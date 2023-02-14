@@ -7,7 +7,7 @@ class GroupController {
             return res.status(200).json(getAllGroups);
         }
         catch (error) {
-            res.status(500).json(error);
+            throw error;
         }
     }
     async getGroup(req, res) {
@@ -16,7 +16,7 @@ class GroupController {
             return res.status(200).json(getGroup);
         }
         catch (error) {
-            res.status(500).json(error);
+            throw error;
         }
     }
     async createGroup(req, res) {
@@ -29,7 +29,7 @@ class GroupController {
             return res.status(200).json(createGroup);
         }
         catch (error) {
-            res.status(500).json(error);
+            throw error;
         }
     }
     async updateGroup(req, res) {
@@ -42,7 +42,7 @@ class GroupController {
             return res.status(200).json(updateGroup);
         }
         catch (error) {
-            res.status(500).json(error);
+            throw error;
         }
     }
     async deleteGroup(req, res) {
@@ -51,7 +51,7 @@ class GroupController {
             return res.status(200).json(deleteGroup);
         }
         catch (error) {
-            res.status(500).json(error);
+            throw error;
         }
     }
 }

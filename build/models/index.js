@@ -15,8 +15,8 @@ const config = fs.readFileSync(path.resolve(__dirname, '../data-access/config.js
 const currentEnv = JSON.parse(config)[env];
 let sequelize = new Sequelize(currentEnv.database, currentEnv.username, currentEnv.password, currentEnv);
 const db = {};
-db.group = group(sequelize, DataTypes);
 db.user = user(sequelize, DataTypes);
+db.group = group(sequelize, DataTypes);
 db.userGroup = userGroup(sequelize, DataTypes);
 Object.keys(db).forEach((modelName) => {
     if (db[modelName].associate) {
