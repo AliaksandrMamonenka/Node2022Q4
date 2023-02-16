@@ -12,4 +12,6 @@ userRouter.delete('/api/users/:id', UserController.deleteUser);
 
 userRouter.post('/api/users/assign-to-group/:groupId', UserController.assignToGroup);
 
+userRouter.post('/api/login', UserController.login);
+
 export default userRouter;

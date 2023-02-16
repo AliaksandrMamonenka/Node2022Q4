@@ -2,6 +2,8 @@ import { Op } from 'sequelize';
 
 import db from '../models/index.js';
 import { UserType } from '../types/userType.js';
+import ApiErrorHandler from '../utils/apiErrorHandler.js';
+import TokenService from './tokenService.js';
 
 const DB: any = db;
 
@@ -36,6 +38,22 @@ class UsersService {
 
   async deleteUser(id: string) {
     return await DB.user.destroy({ where: { id }, returning: true });
+  }
+
+  async login(userName: string, password: string) {
+    const user = await DB.user.findOne({ where: { login: userName } }, { raw: true });
+    const { login, password: userPassword } = user?.dataValues;
+
+    if (!login) {
+      throw ApiErrorHandler.BadRequestError('User does not exist');
+    }
+
+    if (password !== userPassword) {
+      throw ApiErrorHandler.BadRequestError('Password is not valid');
+    }
+
+    const token = TokenService.generateToken({ login, password });
+    return { ...token, user: { login, password } };
   }
 }
 

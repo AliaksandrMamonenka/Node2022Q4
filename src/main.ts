@@ -1,13 +1,13 @@
 import express from 'express';
 import cors from 'cors';
 import dotenv from 'dotenv';
+import cookieParser from 'cookie-parser';
 
 import db from './models/index.js';
-import userRouter from './routes/userRoute.js';
-import groupRouter from './routes/groupRoute.js';
-import { errorLogMid, infoLogMid, logger } from './utils/loggers.js';
+import { userRouter, groupRouter } from './routes/index.js';
+import { errorWinstonLogger, infoWinstonLogger, logger } from './utils/loggers.js';
 import errorHandler from './middleware/errorHandler.js';
-// import customLogger from './middleware/customLogger.js';
+import checkAuthorization from './middleware/checkAuthorization.js';
 
 const { sequelize } = db;
 dotenv.config();
@@ -15,31 +15,24 @@ dotenv.config();
 const app = express();
 const port = process.env.PORT || 3030;
 
-app.use(cors());
 app.use(express.json());
-
-// app.use(customLogger);
+app.use(cookieParser());
+app.use(
+  cors({
+    origin: '*',
+  }),
+);
 
 // express-winston logger makes sense BEFORE the router
-app.use(infoLogMid);
+app.use(infoWinstonLogger);
+app.use(checkAuthorization);
 
 app.use(userRouter);
 app.use(groupRouter);
 
 // express-winston errorLogger makes sense AFTER the router
-app.use(errorLogMid);
-
+app.use(errorWinstonLogger);
 app.use(errorHandler);
-
-// process.on('uncaughtException', (error) => {
-//   logger.error(`Task5.2 - Uncaught Exception: ${error.message}`);
-//   // process.exit(1);
-// });
-
-// process.on('unhandledRejection', (error: any, promise) => {
-//   logger.error('Task5.2 - Unhandled rejection at ', promise, `reason: ${error.message || error.stack}`);
-//   // process.exit(1);
-// });
 
 app.get('/', (req, res) => {
   res.send('Main Page');
