@@ -40,10 +40,10 @@ loggers.add('errorLogger', {
 
 export const logger = loggers.get('infoLogger');
 
-export const infoLogMid = expressWinston.logger({
+export const infoWinstonLogger = expressWinston.logger({
   winstonInstance: logger,
 });
 
-export const errorLogMid = expressWinston.errorLogger({
+export const errorWinstonLogger = expressWinston.errorLogger({
   winstonInstance: loggers.get('errorLogger'),
 });
