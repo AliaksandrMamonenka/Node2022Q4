@@ -1,20 +1,18 @@
-class ApiErrorHandler extends Error {
-  status;
-  errors;
+class UnauthorizedError extends Error {
+  constructor(message) {
+    super();
 
-  constructor(status, message, errors = []) {
-    super(message);
-    this.status = status;
-    this.errors = errors;
+    this.status = 401;
+    this.message = message || 'Unauthorized Error';
   }
+}
+class BadRequestError extends Error {
+  constructor(message) {
+    super();
 
-  static UnauthorizedError() {
-    return new ApiErrorHandler(401, 'No token provided');
-  }
-
-  static BadRequestError(message, errors = []) {
-    return new ApiErrorHandler(403, message, errors);
+    this.status = 403;
+    this.message = message || 'Bad Request Error';
   }
 }
 
-export default ApiErrorHandler;
+export { UnauthorizedError, BadRequestError };

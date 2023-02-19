@@ -2,7 +2,7 @@ import { Op } from 'sequelize';
 
 import db from '../models/index.js';
 import { UserType } from '../types/userType.js';
-import ApiErrorHandler from '../utils/apiErrorHandler.js';
+import { BadRequestError } from '../utils/apiErrorHandler.js';
 import TokenService from './tokenService.js';
 
 const DB: any = db;
@@ -45,11 +45,11 @@ class UsersService {
     const { login, password: userPassword } = user?.dataValues;
 
     if (!login) {
-      throw ApiErrorHandler.BadRequestError('User does not exist');
+      throw new BadRequestError('User does not exist');
     }
 
     if (password !== userPassword) {
-      throw ApiErrorHandler.BadRequestError('Password is not valid');
+      throw new BadRequestError('Password is not valid');
     }
 
     const token = TokenService.generateToken({ login, password });
