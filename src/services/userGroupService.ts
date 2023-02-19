@@ -1,5 +1,5 @@
 import db from '../models/index.js';
-import ApiErrorHandler from '../utils/apiErrorHandler.js';
+import { BadRequestError } from '../utils/apiErrorHandler.js';
 
 const DB: any = db;
 
@@ -16,7 +16,7 @@ class UserGroupService {
       return result;
     } else {
       await transaction.rollback();
-      throw ApiErrorHandler.BadRequestError('Put valid group or user ids');
+      throw new BadRequestError('Put valid group or user ids');
     }
   }
 }

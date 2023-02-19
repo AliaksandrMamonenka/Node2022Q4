@@ -23,16 +23,18 @@ app.use(
   }),
 );
 
+app.use(checkAuthorization);
+
 // express-winston logger makes sense BEFORE the router
 app.use(infoWinstonLogger);
-app.use(checkAuthorization);
 
 app.use(userRouter);
 app.use(groupRouter);
 
+app.use(errorHandler);
+
 // express-winston errorLogger makes sense AFTER the router
 app.use(errorWinstonLogger);
-app.use(errorHandler);
 
 app.get('/', (req, res) => {
   res.send('Main Page');

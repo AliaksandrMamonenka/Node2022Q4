@@ -1,15 +1,15 @@
-import { Request, Response } from 'express';
-import ApiErrorHandler from '../utils/apiErrorHandler.js';
+import { NextFunction, Request, Response } from 'express';
 import { logger } from '../utils/loggers.js';
 
-export default (error: Error, request: Request, response: Response) => {
-  const { name, message, stack } = error;
+export default (error: any, request: Request, response: Response, next: NextFunction) => {
+  const { status, message, stack } = error;
 
-  logger.error(`${name}, ${message}, ${stack}`);
-
-  if (error instanceof ApiErrorHandler) {
-    return response.status(error.status).json({ message: error.message, errors: error.errors });
+  if (error?.status) {
+    logger.error(`${status}, ${message}, ${stack}`);
+    return response.status(error.status).json({ message: error.message });
   }
 
-  return response.status(500).json({ message: 'Server error, something went wrong' });
+  logger.error(`${stack}`);
+  const msg = message ? message : 'something went wrong';
+  return response.status(500).json({ message: `Server error: ${msg}` });
 };
