@@ -4,6 +4,14 @@ import UserService from '../services/userService.js';
 import { userUpdateValidation, userValidation } from '../validations/userValidation.js';
 
 class UserController {
+  async testcontroller(req: Request, res: Response, next: (arg: any) => void) {
+    if (!req.body.firstName) {
+      res.status(400).json('you need to pass a firstName');
+      return;
+    }
+    res.sendStatus(201);
+  }
+
   async getAllUsers(req: Request, res: Response, next: (arg: any) => void) {
     try {
       const getAllUsers = await UserService.getAllUsers(req.query);

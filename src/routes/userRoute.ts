@@ -4,6 +4,7 @@ import UserController from '../controllers/userController.js';
 const userRouter = Router();
 
 // /api/users?login=Hom&limit=10
+userRouter.get('/api/test', UserController.testcontroller);
 userRouter.get('/api/users', UserController.getAllUsers);
 userRouter.get('/api/users/:id', UserController.getUser);
 userRouter.post('/api/users', UserController.createUser);

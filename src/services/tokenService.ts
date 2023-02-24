@@ -1,16 +1,16 @@
 import jwt from 'jsonwebtoken';
 
-const tokenKeyValue = 'this-is-the-key';
-
 class TokenService {
+  tokenKeyValue = String(process.env.JWT_REFRESH_SECRET_KEY);
+
   generateToken(payload: any) {
-    const accessToken = jwt.sign(payload, tokenKeyValue, { expiresIn: '10m' });
+    const accessToken = jwt.sign(payload, this.tokenKeyValue, { expiresIn: '10m' });
 
     return { accessToken };
   }
 
   validateToken(payload: any) {
-    const accessToken = jwt.verify(payload, tokenKeyValue);
+    const accessToken = jwt.verify(payload, this.tokenKeyValue);
 
     return accessToken;
   }
