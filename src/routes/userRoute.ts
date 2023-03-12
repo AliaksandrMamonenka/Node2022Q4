@@ -4,15 +4,13 @@ import UserController from '../controllers/userController.js';
 const userRouter = Router();
 
 // /api/users?login=Hom&limit=10
-userRouter.get('/api/test', UserController.testcontroller);
 userRouter.get('/api/users', UserController.getAllUsers);
 userRouter.get('/api/users/:id', UserController.getUser);
 userRouter.post('/api/users', UserController.createUser);
 userRouter.put('/api/users', UserController.updateUser);
 userRouter.delete('/api/users/:id', UserController.deleteUser);
+userRouter.post('/api/login', UserController.login);
 
 userRouter.post('/api/users/assign-to-group/:groupId', UserController.assignToGroup);
-
-userRouter.post('/api/login', UserController.login);
 
 export default userRouter;

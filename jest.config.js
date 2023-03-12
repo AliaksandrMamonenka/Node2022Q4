@@ -64,9 +64,6 @@ export default {
   // A path to a module which exports an async function that is triggered once after all test suites
   // globalTeardown: undefined,
 
-  // A set of global variables that need to be available in all test environments
-  // globals: {},
-
   // The maximum amount of workers used to run your tests. Can be specified as % or a number. E.g. maxWorkers: 10% will use 10% of your CPU amount + 1 as the maximum worker number. maxWorkers: 2 will use a maximum of 2 workers.
   // maxWorkers: "50%",
 
@@ -87,9 +84,6 @@ export default {
   //   "node"
   // ],
 
-  // A map from regular expressions to module names or to arrays of module names that allow to stub out resources with a single module
-  // moduleNameMapper: {},
-
   // An array of regexp pattern strings, matched against all module paths before considered 'visible' to the module loader
   // modulePathIgnorePatterns: [],
 
@@ -101,7 +95,7 @@ export default {
 
   // A preset that is used as a base for Jest's configuration
   // preset: undefined,
-
+  preset: 'ts-jest',
   // Run tests from one or more projects
   // projects: undefined,
 
@@ -127,6 +121,10 @@ export default {
   // roots: [
   //   "<rootDir>"
   // ],
+  roots: [
+    //"<rootDir>/src"
+    '<rootDir>/src',
+  ],
 
   // Allows you to use a custom runner instead of Jest's default test runner
   // runner: "jest-runner",
@@ -159,9 +157,7 @@ export default {
   // ],
 
   // An array of regexp pattern strings that are matched against all test paths, matched tests are skipped
-  // testPathIgnorePatterns: [
-  //   "/node_modules/"
-  // ],
+  testPathIgnorePatterns: ['/node_modules/', '/build/'],
 
   // The regexp pattern or array of patterns that Jest uses to detect test files
   // testRegex: [],
@@ -174,7 +170,9 @@ export default {
 
   // A map from regular expressions to paths to transformers
   // transform: undefined,
-
+  transform: {
+    '^.+\\.(ts|tsx|js)$': 'ts-jest',
+  },
   // An array of regexp pattern strings that are matched against all source file paths, matched files will skip transformation
   // transformIgnorePatterns: [
   //   "/node_modules/",
@@ -192,4 +190,15 @@ export default {
 
   // Whether to use watchman for file crawling
   // watchman: true,
+  extensionsToTreatAsEsm: ['.ts'],
+  // A map from regular expressions to module names or to arrays of module names that allow to stub out resources with a single module
+  moduleNameMapper: {
+    '^(\\.{1,2}/.*)\\.js$': '$1',
+  },
 };
+
+// globals: {
+//   'ts-jest': {
+//     useESM: true,
+//   },
+// },

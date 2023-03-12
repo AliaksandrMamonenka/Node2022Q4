@@ -12,9 +12,9 @@ import user from './user.js';
 import group from './group.js';
 import userGroup from './userGroup.js';
 
-const __filename = fileURLToPath(import.meta.url);
+const __filenamePath = fileURLToPath(import.meta.url);
 const env = process.env.NODE_ENV;
-const __dirname = path.dirname(__filename);
+const __dirname = path.dirname(__filenamePath);
 const config = fs.readFileSync(path.resolve(__dirname, '../data-access/config.json'));
 const currentEnv = JSON.parse(config)[env];
 let sequelize = new Sequelize(currentEnv.database, currentEnv.username, currentEnv.password, currentEnv);
